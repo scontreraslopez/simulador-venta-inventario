@@ -48,12 +48,13 @@ fun MainScreen(
 
 
         Text("TITULO")
-        Text("Cupón ganador: 12345")
-        Text("Enhorabuena: Has ganado 50€")
-        Text("Comprueba tu Cupon")
-        Text("Numero: 12345")
-        Text("Serie: 11")
-        Text("Comprobar")
+        Text("Resumen Transaccion: ")
+        Text("Recibes 150g")
+        Text("Vende tu inventario")
+        Text("Espada oxidada - 20g)
+        Text("Taza rota - 1g)
+        Text("...")
+        Text("Confirmar")
         Text("Limpiar")
              */
 
