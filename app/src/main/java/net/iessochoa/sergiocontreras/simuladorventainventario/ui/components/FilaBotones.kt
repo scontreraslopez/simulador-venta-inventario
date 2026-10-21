@@ -13,9 +13,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun FilaBotones(
-    onComprobarClick: () -> Unit,
-    onLimpiarClick: () -> Unit,
+fun SeccionBotones(
+    onVenderClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -25,21 +24,15 @@ fun FilaBotones(
     {
         //Comprobar cupon
         Button(
-            onClick = onComprobarClick
+            onClick = onVenderClick
         ) {
-            Text("Comprobar Cupon")
+            Text("Confirmar Venta")
         }
-        Spacer(modifier = Modifier.width(8.dp))
-        //Limpiar
-        Button(
-            onClick = onLimpiarClick
-        ) {
-            Text("Limpiar")
-        }
+
 
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun FilaBotonesPreview()  = FilaBotones({ }, { }, modifier = Modifier.fillMaxWidth(), )
+fun SeccionBotonesPreview()  = SeccionBotones({ }, modifier = Modifier.fillMaxWidth(), )

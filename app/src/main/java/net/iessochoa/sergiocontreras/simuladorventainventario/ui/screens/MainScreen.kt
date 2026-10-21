@@ -10,10 +10,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.BannerPremio
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CuponComprobar
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CuponGanador
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.FilaBotones
+import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxRow
+import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.ResumenVentas
+import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SeccionBotones
 
 @Composable
 fun MainScreen(
@@ -24,24 +23,22 @@ fun MainScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("MI LOTERO KOTLIN") //ESTO ES TOP APP BAR
-        Text("Cupon Ganador: ")
-        CuponGanador(
-            numero = "12345",
-            serie = "11",
-            mostrar = true
+        Text("Simulador Venta") //ESTO ES TOP APP BAR
+        ResumenVentas(
+            total = "150"
         )
-        BannerPremio(
+        CheckboxRow(
+            label = "Espada oxidada",
+            isChecked = true,
+            onCheckedChange = {}
         )
-        CuponComprobar(
-            numero = "12345",
-            serie = "22",
-            onNumeroChange = { } ,
-            onSerieChange = { }
+        CheckboxRow(
+            label = "Taza rota",
+            isChecked = true,
+            onCheckedChange = {}
         )
-        FilaBotones(
-            onComprobarClick = {  },
-            onLimpiarClick = { }
+        SeccionBotones(
+            onVenderClick = {  },
         )
 
         /*
