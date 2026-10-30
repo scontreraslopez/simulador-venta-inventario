@@ -27,8 +27,14 @@ fun ResumenVentas(
         Column(
             modifier = modifier
         ) {
+            val totalNum = total.toIntOrNull() ?: 0
+            val imagenRes = when {
+                totalNum > 0 -> R.drawable.premio_dinero
+                else -> R.drawable.sin_premio_monedero
+            }
+
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher_foreground),
+                painter = painterResource(id = imagenRes),
                 contentDescription = "Imagen de oro",
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             )

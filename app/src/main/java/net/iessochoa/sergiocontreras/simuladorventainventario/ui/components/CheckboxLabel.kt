@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
  */
 
 @Composable
-fun CheckboxRow(
+fun CheckboxLabel(
     label: String,
     isChecked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -38,7 +38,7 @@ fun CheckboxRow(
 
 @Preview(showBackground = true)
 @Composable
-fun CheckboxRowPreview()  = CheckboxRow(
+fun CheckboxLabelPreview()  = CheckboxLabel(
     label = "Ejemplo de Checkbox",
     isChecked = true,
     onCheckedChange = {}

@@ -6,11 +6,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxRow
+import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
+import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
+import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxGrid
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.ResumenVentas
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SeccionBotones
 
@@ -18,6 +24,20 @@ import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.Secc
 fun MainScreen(
     modifier: Modifier = Modifier
 ) {
+    val repository = InventoryRepository
+    val allItems = repository.getAllItems()
+
+    var selectedItems by remember { mutableStateOf(setOf<InventarioItem>()) }
+
+    var onCheckChange: (InventarioItem) -> Unit = {
+        if (selectedItems.contains(it)) {
+            selectedItems = selectedItems - it
+        } else {
+            selectedItems = selectedItems + it
+        }
+    }
+
+    
     Column(
         modifier = modifier.padding(4.dp),
         verticalArrangement = Arrangement.Center,
@@ -27,15 +47,10 @@ fun MainScreen(
         ResumenVentas(
             total = "150"
         )
-        CheckboxRow(
-            label = "Espada oxidada",
-            isChecked = true,
-            onCheckedChange = {}
-        )
-        CheckboxRow(
-            label = "Taza rota",
-            isChecked = true,
-            onCheckedChange = {}
+        CheckboxGrid(
+            listaInventario = allItems,
+            itemsSeleccionados = selectedItems.toList(),
+            onCheckedChange = onCheckChange,
         )
         SeccionBotones(
             onVenderClick = {  },
