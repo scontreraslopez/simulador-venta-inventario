@@ -6,10 +6,12 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
 import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 
 /**
@@ -42,6 +44,7 @@ fun CheckboxGrid(
 
                     CheckboxLabel(
                         label = itemLeft.nombre,
+                        modifier = Modifier.width(200.dp),
                         isChecked = itemLeft in itemsSeleccionados,
                         onCheckedChange = {onCheckedChange(itemLeft)}
                     )
@@ -56,7 +59,9 @@ fun CheckboxGrid(
 
                     CheckboxLabel(
                         label = itemRight.nombre,
-                        modifier = Modifier.padding(end = 32.dp),
+                        modifier = Modifier
+                            .width(200.dp)
+                            .padding(end = 16.dp),
                         isChecked = itemRight in itemsSeleccionados,
                         onCheckedChange = {onCheckedChange(itemRight)}
                     )
@@ -69,14 +74,10 @@ fun CheckboxGrid(
 @Preview(showBackground=true)
 @Composable
 fun CheckboxGridPreview() {
+    val repository = InventoryRepository
+    val items = repository.getAllItems()
     CheckboxGrid(
-        listaInventario = listOf(
-            InventarioItem("Item 1", 10),
-            InventarioItem("Item 2", 20),
-            InventarioItem("Item 3", 30),
-            InventarioItem("Item 4", 40),
-            InventarioItem("Item 5", 50)
-        ),
+        listaInventario = items,
         itemsSeleccionados = emptyList(),
         onCheckedChange = {},
     )
