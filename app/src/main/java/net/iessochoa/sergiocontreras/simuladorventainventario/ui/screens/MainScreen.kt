@@ -1,12 +1,12 @@
 package net.iessochoa.sergiocontreras.simuladorventainventario.ui.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -14,12 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
+import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxGrid
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.ResumenVentas
+import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SaludoMercader
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SeccionBotones
 
 @Composable
@@ -31,13 +33,17 @@ fun MainScreen(
 
     var selectedItems by remember { mutableStateOf(setOf<InventarioItem>()) }
 
-    var onCheckChange: (InventarioItem) -> Unit = {
-        if (selectedItems.contains(it)) {
-            selectedItems = selectedItems - it
+    val onCheckChange: (InventarioItem) -> Unit = {
+        selectedItems = if (selectedItems.contains(it)) {
+            selectedItems - it
         } else {
-            selectedItems = selectedItems + it
+            selectedItems + it
         }
     }
+
+    val totalOro = selectedItems.sumOf { it.precio }
+    val context = LocalContext.current
+
 
     
     Column(
@@ -45,19 +51,27 @@ fun MainScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Simulador Venta") //ESTO ES TOP APP BAR
+        SaludoMercader(haySeleccion = selectedItems.isNotEmpty())
+        Spacer(modifier = Modifier.height(16.dp))
         ResumenVentas(
-            total = "150"
+            totalOro = totalOro,
+            numItems = selectedItems.size
         )
+        Spacer(modifier = Modifier.height(32.dp))
         CheckboxGrid(
             listaInventario = allItems,
-            itemsSeleccionados = selectedItems.toList(),
+            itemsSeleccionados = selectedItems,
             onCheckedChange = onCheckChange,
         )
         Spacer(modifier = Modifier.height(32.dp))
         SeccionBotones(
-            onVenderClick = {  },
-            onLimpiarClick = { }
+            onVenderClick = {
+                Toast.makeText(context, "Transacción solicitada", Toast.LENGTH_SHORT).show()
+            },
+            onLimpiarClick = {
+                selectedItems = setOf()
+                Toast.makeText(context, "Inventario limpiado", Toast.LENGTH_SHORT).show()
+            }
         )
 
         /*

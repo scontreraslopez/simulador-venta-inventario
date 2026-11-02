@@ -1,4 +1,4 @@
-package net.iessochoa.sergiocontreras.miloterokotlin
+package net.iessochoa.sergiocontreras.simuladorventainventario
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.screens.MainScreen
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.theme.SimuladorVentaInventarioTheme
 
@@ -19,8 +20,10 @@ fun SimuladorVentaInventarioApp() {
             modifier = Modifier.fillMaxSize(),
             topBar = { CenterAlignedTopAppBar(title = { Text("Panel de Comercio") }) }
         ) { innerPadding ->
-            MainScreen(modifier = Modifier.fillMaxSize()
-                .padding(innerPadding))
+            MainScreen(modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(8.dp))
         }
     }
 }

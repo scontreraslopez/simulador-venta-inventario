@@ -31,26 +31,29 @@ fun ResumenVentas(
         "Te ofrezco ${totalOro}g por los $numItems items",
     )
 
-    @DrawableRes var imagenRes: Int
-    var mensaje: String
+    @DrawableRes val imagenRes: Int
+    val mensaje: String
+    val descripcionImagen: String
+
+    when {
+        totalOro > 0 -> {
+            imagenRes = R.drawable.premio_dinero
+            mensaje = mensajes[1]
+            descripcionImagen = "Bolsa de oro"
+        }
+        else -> {
+            imagenRes = R.drawable.sin_premio_monedero
+            mensaje = mensajes[0]
+            descripcionImagen = "Monedero vacío"
+        }
+    }
 
     Column(
         modifier = modifier
     ) {
-        when {
-            totalOro > 0 -> {
-                imagenRes = R.drawable.premio_dinero
-                mensaje = mensajes[1]
-            }
-            else -> {
-                imagenRes = R.drawable.sin_premio_monedero
-                mensaje = mensajes[0]
-            }
-        }
-
         Image(
             painter = painterResource(id = imagenRes),
-            contentDescription = "Imagen de oro",
+            contentDescription = descripcionImagen,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
         Spacer(modifier = Modifier.height(16.dp))
