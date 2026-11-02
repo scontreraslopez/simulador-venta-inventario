@@ -1,10 +1,12 @@
 package net.iessochoa.sergiocontreras.simuladorventainventario.ui.components
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -19,36 +21,61 @@ import net.iessochoa.sergiocontreras.simuladorventainventario.R
 
 @Composable
 fun ResumenVentas(
-    total: String,
+    totalOro: Int,
+    numItems: Int,
     modifier: Modifier = Modifier
 ) {
-    val totalNum = total.toIntOrNull() ?: 0
-    if (totalNum > 0) {
-        Column(
-            modifier = modifier
-        ) {
-            val totalNum = total.toIntOrNull() ?: 0
-            val imagenRes = when {
-                totalNum > 0 -> R.drawable.premio_dinero
-                else -> R.drawable.sin_premio_monedero
-            }
 
-            Image(
-                painter = painterResource(id = imagenRes),
-                contentDescription = "Imagen de oro",
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
-            Spacer(modifier = Modifier.width(16.dp))
-            Text("Vender por ${totalNum}g")
+    val mensajes = listOf(
+        "No puedo ofrecerte nada por eso...",
+        "Te ofrezco ${totalOro}g por los $numItems items",
+    )
+
+    @DrawableRes var imagenRes: Int
+    var mensaje: String
+
+    Column(
+        modifier = modifier
+    ) {
+        when {
+            totalOro > 0 -> {
+                imagenRes = R.drawable.premio_dinero
+                mensaje = mensajes[1]
+            }
+            else -> {
+                imagenRes = R.drawable.sin_premio_monedero
+                mensaje = mensajes[0]
+            }
         }
+
+        Image(
+            painter = painterResource(id = imagenRes),
+            contentDescription = "Imagen de oro",
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(mensaje)
     }
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun ResumenVentasPreview() {
     ResumenVentas(
-        total = "150",
-        modifier = Modifier
+        totalOro = 220,
+        numItems = 3
     )
 }
+
+
+@Preview(showBackground = true)
+@Composable
+fun ResumenVentasPreview2() {
+    ResumenVentas(
+        totalOro = 0,
+        numItems = 0
+    )
+}
+
+

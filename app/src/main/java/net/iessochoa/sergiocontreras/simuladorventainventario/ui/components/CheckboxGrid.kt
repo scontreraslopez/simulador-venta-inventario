@@ -43,7 +43,7 @@ fun CheckboxGrid(
                     val itemLeft = listaInventario[i]
 
                     CheckboxLabel(
-                        label = itemLeft.nombre,
+                        label = "${itemLeft.nombre} - ${itemLeft.precio}g",
                         modifier = Modifier.width(200.dp),
                         isChecked = itemLeft in itemsSeleccionados,
                         onCheckedChange = {onCheckedChange(itemLeft)}
@@ -58,7 +58,7 @@ fun CheckboxGrid(
                     )
 
                     CheckboxLabel(
-                        label = itemRight.nombre,
+                        label = "${itemRight.nombre} - ${itemRight.precio}g",
                         modifier = Modifier
                             .width(200.dp)
                             .padding(end = 16.dp),
