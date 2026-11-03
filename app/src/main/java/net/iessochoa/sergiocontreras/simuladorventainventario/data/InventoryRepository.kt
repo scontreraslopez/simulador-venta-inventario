@@ -3,11 +3,14 @@ package net.iessochoa.sergiocontreras.simuladorventainventario.data
 import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 
 /**
- * Project: Simulador Venta Inventario
- * From: net.iessochoa.sergiocontreras.simuladorventainventario.data
- * Created by: Contr
- * On: 30/10/2026 at 12:20
- * Creado en Settings -> Editor -> File and Code Templates
+ * Fuente de datos del inventario del jugador.
+ *
+ * Es un `object` (singleton): no hace falta crear instancias, se usa directamente
+ * como `InventoryRepository.getAllItems()`.
+ *
+ * > Pista: **no copies estos datos en la UI**. Pide la lista al repositorio desde la
+ * > pantalla y pásasela al componente que pinta los checkboxes. Si mañana cambia el
+ * > inventario, la UI no debería tener que tocarse.
  */
 object InventoryRepository {
 
@@ -19,9 +22,20 @@ object InventoryRepository {
         InventarioItem("Orbe del Caos", 8)
     )
 
-    fun getAllItems() = itemList
-    fun getRandomItem() = itemList.random()
-    fun getFirstItem() = itemList.first()
+    /**
+     * Devuelve todos los objetos del inventario, en el orden en que deben mostrarse.
+     *
+     * @return Lista inmutable de [InventarioItem].
+     */
+    fun getAllItems(): List<InventarioItem> = itemList
 
+    /**
+     * Devuelve un objeto cualquiera del inventario. Útil para `@Preview`.
+     */
+    fun getRandomItem(): InventarioItem = itemList.random()
 
+    /**
+     * Devuelve el primer objeto del inventario. Útil para `@Preview`.
+     */
+    fun getFirstItem(): InventarioItem = itemList.first()
 }

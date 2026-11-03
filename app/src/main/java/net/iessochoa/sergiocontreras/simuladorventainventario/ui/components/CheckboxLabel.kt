@@ -9,13 +9,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 /**
- * Project: Simulador Venta Inventario
- * From: net.iessochoa.sergiocontreras.simuladorventainventario.ui.components
- * Created by: Contr
- * On: 22/10/2026 at 00:15
- * Creado en Settings -> Editor -> File and Code Templates
+ * Checkbox con una etiqueta de texto a su derecha, centrados verticalmente.
+ *
+ * **Viene de fábrica**: es el mismo componente del tema y no se evalúa.
+ * Úsalo tal cual desde `CheckboxGrid`; no hace falta modificarlo.
+ *
+ * Es un componente sin estado: no recuerda si está marcado. Quien lo usa le dice
+ * si está marcado ([isChecked]) y recibe un aviso cuando el usuario lo pulsa
+ * ([onCheckedChange]).
+ *
+ * @param label Texto que se muestra junto al checkbox, p. ej. `"Espada del Exiliado - 75g"`.
+ * @param isChecked `true` si el checkbox debe aparecer marcado.
+ * @param onCheckedChange Se llama al pulsar el checkbox, con el nuevo valor que tendría.
+ * @param modifier Modifier que se aplica a la fila completa (checkbox + texto).
  */
-
 @Composable
 fun CheckboxLabel(
     label: String,

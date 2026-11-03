@@ -1,4 +1,9 @@
 <resources>
+    <!--
+        Textos de la app ya preparados para que los uses con stringResource(R.string.xxx).
+        Eres libre de cambiarlos o de añadir los tuyos si prefieres enfocarlo de otra manera:
+        lo que se evalúa es que los textos estén aquí y no escritos a mano en el código.
+    -->
     <string name="app_name">Simulador Venta Inventario</string>
     <string name="top_bar_titulo">Panel de Comercio</string>
     <string name="button_confirmar_venta">Confirmar Venta</string>

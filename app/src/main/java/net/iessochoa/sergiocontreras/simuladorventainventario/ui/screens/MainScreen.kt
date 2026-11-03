@@ -1,103 +1,72 @@
 package net.iessochoa.sergiocontreras.simuladorventainventario.ui.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import net.iessochoa.sergiocontreras.simuladorventainventario.R
-import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
-import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxGrid
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.ResumenVentas
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SaludoMercader
-import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.SeccionBotones
 
+/*
+ * ============================================================================
+ *  MainScreen: la pantalla de comercio
+ * ============================================================================
+ *
+ *  QUÉ SE PIDE
+ *  -----------
+ *  Esta pantalla monta los componentes de `ui.components` y es la ÚNICA que
+ *  guarda el estado. Los componentes solo pintan y avisan.
+ *
+ *  Orden de arriba abajo:
+ *
+ *      SaludoMercader
+ *      ResumenVentas
+ *      CheckboxGrid
+ *      SeccionBotones
+ *
+ *  Pon `Spacer`s entre los elementos para que la pantalla respire, p. ej.
+ *  `Spacer(modifier = Modifier.height(16.dp))`. Juega con las alturas hasta
+ *  que quede bien.
+ *
+ *  SUGERENCIA DE PASOS
+ *  -------------------
+ *  1. Datos: pide la lista de items a `InventoryRepository`.
+ *
+ *  2. Estado: guarda qué items están seleccionados.
+ *
+ *  3. Al pulsar un checkbox: si el item ya estaba, se quita; si no, se añade.
+ *     Pásale esa lambda a `CheckboxGrid`.
+ *
+ *  4. Datos derivados, calculados a partir del estado en cada recomposición
+ *     (no hace falta guardarlos en otro `remember`):
+ *       - número de items seleccionados  → Básico
+ *       - total de oro (`sumOf { it.precio }`) → Avanzado
+ *       - ¿hay algo seleccionado? (`isNotEmpty()`) → Avanzado / Excelente
+ *
+ *  5. Botones: pásale a `SeccionBotones` una lambda por botón.
+ *       - Avanzado: mostrar el Toast con
+ *         `Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show()`.
+ *       - Excelente: además, dejar la selección vacía.
+ *
+ *  PISTAS PARA LOS TOAST
+ *  ---------------------
+ *  - El `Context` se obtiene con `val context = LocalContext.current`.
+ *  - `stringResource(...)` es `@Composable`: NO se puede llamar dentro de un
+ *    `onClick`. Lee el texto ANTES, fuera de la lambda, y guárdalo en una `val`.
+ */
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier
 ) {
-    val repository = InventoryRepository
-    val allItems = repository.getAllItems()
-
-    var selectedItems by remember { mutableStateOf(setOf<InventarioItem>()) }
-
-    val onCheckChange: (InventarioItem) -> Unit = {
-        selectedItems = if (selectedItems.contains(it)) {
-            selectedItems - it
-        } else {
-            selectedItems + it
-        }
-    }
-
-    val totalOro = selectedItems.sumOf { it.precio }
-    val context = LocalContext.current
-    val toastVentaMensaje = stringResource(R.string.toast_venta)
-    val toastLimpiarMensaje = stringResource(R.string.toast_limpiar)
-
-
-    
     Column(
-        modifier = modifier.padding(4.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        SaludoMercader(haySeleccion = selectedItems.isNotEmpty())
-        Spacer(modifier = Modifier.height(16.dp))
-        ResumenVentas(
-            totalOro = totalOro,
-            numItems = selectedItems.size
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        CheckboxGrid(
-            listaInventario = allItems,
-            itemsSeleccionados = selectedItems,
-            onCheckedChange = onCheckChange,
-        )
-        Spacer(modifier = Modifier.height(32.dp))
-        SeccionBotones(
-            onVenderClick = {
-                selectedItems = setOf()
-                Toast.makeText(context, toastVentaMensaje, Toast.LENGTH_SHORT).show()
-            },
-            onLimpiarClick = {
-                selectedItems = setOf()
-                Toast.makeText(context,toastLimpiarMensaje, Toast.LENGTH_SHORT).show()
-            }
-        )
-
-        /*
-
-
-        Text("TITULO")
-        Text("Resumen Transaccion: ")
-        Text("Recibes 150g")
-        Text("Vende tu inventario")
-        Text("Espada oxidada - 20g)
-        Text("Taza rota - 1g)
-        Text("...")
-        Text("Confirmar")
-        Text("Limpiar")
-             */
-
+        // TODO: monta aquí la pantalla
     }
 }
-
-
-
 
 @Preview(showBackground = true)
 @Composable

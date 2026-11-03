@@ -1,79 +1,40 @@
 package net.iessochoa.sergiocontreras.simuladorventainventario.ui.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
-import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
-
-/**
- * Project: Simulador Venta Inventario
- * From: net.iessochoa.sergiocontreras.simuladorventainventario.ui.components
- * Created by: Contr
- * On: 30/10/2026 at 11:41
- * Creado en Settings -> Editor -> File and Code Templates
+/*
+ * ============================================================================
+ *  CheckboxGrid: grid de checkboxes con el inventario del jugador
+ * ============================================================================
+ *
+ *  QUÉ SE PIDE
+ *  -----------
+ *  Un composable que pinte un checkbox por cada objeto del inventario.
+ *  La etiqueta de cada checkbox tiene este formato:
+ *
+ *      Nombre del item - Preciog        →   "Espada del Exiliado - 75g"
+ *
+ *  NIVELES
+ *  -------
+ *  - Básico y Avanzado: vale con UNA columna (un checkbox debajo de otro).
+ *  - Excelente (9-10): hace falta pintarlo a DOS columnas. Si el número de
+ *    items es impar, el último ocupa solo su mitad de la fila; no se estira.
+ *
+ *  PISTAS
+ *  ------
+ *  - Ya tienes `CheckboxLabel` en este mismo paquete: un Checkbox con su texto.
+ *    Reutilízalo, no lo vuelvas a escribir.
+ *  - Este componente NO guarda estado (nada de `remember` aquí dentro). Recibe
+ *    por parámetro:
+ *      · la lista de items que hay que pintar,
+ *      · cuáles están seleccionados,
+ *      · una lambda para avisar de que el usuario ha pulsado un item.
+ *    El estado vive en la pantalla (MainScreen), que es quien decide qué hacer.
+ *  - Un checkbox está marcado si su item está entre los seleccionados.
+ *  - Para dos columnas tienes varias opciones: `LazyVerticalGrid` con
+ *    `GridCells.Fixed(2)`, o recorrer la lista de dos en dos montando `Row`s
+ *    dentro de una `Column`. Con `Modifier.weight(1f)` cada celda ocupa la
+ *    mitad de la fila.
+ *  - Ojo: un `LazyVerticalGrid` dentro de una `Column` con `verticalScroll`
+ *    rompe la app (altura infinita).
+ *  - Acepta un `modifier: Modifier = Modifier` y añade una `@Preview` que use
+ *    `InventoryRepository.getAllItems()`.
  */
-
-// Matrix rows x 2cols de checkboxes.
-@Composable
-fun CheckboxGrid(
-    listaInventario: List<InventarioItem>,
-    itemsSeleccionados: Set<InventarioItem>,
-    onCheckedChange: (InventarioItem) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Column(
-        modifier = modifier
-    ) {
-        for (i in listaInventario.indices step 2) {
-            Row(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                // Pintar el izquierdo (siempre existe: i está dentro de indices)
-                val itemLeft = listaInventario[i]
-                CheckboxLabel(
-                    label = "${itemLeft.nombre} - ${itemLeft.precio}g",
-                    modifier = Modifier
-                        .weight(1f)
-                        .padding(vertical = 4.dp),
-                    isChecked = itemLeft in itemsSeleccionados,
-                    onCheckedChange = { onCheckedChange(itemLeft) }
-                )
-
-                if (i + 1 < listaInventario.size) {
-                    // Pintar el derecho
-                    val itemRight = listaInventario[i + 1]
-                    CheckboxLabel(
-                        label = "${itemRight.nombre} - ${itemRight.precio}g",
-                        modifier = Modifier
-                            .weight(1f)
-                            .padding(vertical = 4.dp),
-                        isChecked = itemRight in itemsSeleccionados,
-                        onCheckedChange = { onCheckedChange(itemRight) }
-                    )
-                } else {
-                    // Lista impar: hueco vacío para que el izquierdo no ocupe toda la fila
-                    Spacer(modifier = Modifier.weight(1f))
-                }
-            }
-        }
-    }
-}
-
-@Preview(showBackground=true)
-@Composable
-fun CheckboxGridPreview() {
-    val repository = InventoryRepository
-    val items = repository.getAllItems()
-    CheckboxGrid(
-        listaInventario = items,
-        itemsSeleccionados = emptySet(),
-        onCheckedChange = {},
-    )
-}
