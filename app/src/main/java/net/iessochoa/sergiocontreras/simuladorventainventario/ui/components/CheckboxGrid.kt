@@ -4,9 +4,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
 import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 
@@ -37,7 +39,9 @@ fun CheckboxGrid(
                 val itemLeft = listaInventario[i]
                 CheckboxLabel(
                     label = "${itemLeft.nombre} - ${itemLeft.precio}g",
-                    modifier = Modifier.weight(1f),
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(vertical = 4.dp),
                     isChecked = itemLeft in itemsSeleccionados,
                     onCheckedChange = { onCheckedChange(itemLeft) }
                 )
@@ -47,7 +51,9 @@ fun CheckboxGrid(
                     val itemRight = listaInventario[i + 1]
                     CheckboxLabel(
                         label = "${itemRight.nombre} - ${itemRight.precio}g",
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(vertical = 4.dp),
                         isChecked = itemRight in itemsSeleccionados,
                         onCheckedChange = { onCheckedChange(itemRight) }
                     )
