@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Simulador Venta Inventario</string>
+    <string name="top_bar_titulo">Panel de Comercio</string>
     <string name="button_confirmar_venta">Confirmar Venta</string>
     <string name="button_cancelar_venta">Cancelar Venta</string>
     <string name="mensaje_venta_vacia">No puedo ofrecerte nada por eso...</string>

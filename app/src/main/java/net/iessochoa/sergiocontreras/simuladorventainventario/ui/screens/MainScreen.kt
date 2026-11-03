@@ -70,6 +70,7 @@ fun MainScreen(
         Spacer(modifier = Modifier.height(32.dp))
         SeccionBotones(
             onVenderClick = {
+                selectedItems = setOf()
                 Toast.makeText(context, toastVentaMensaje, Toast.LENGTH_SHORT).show()
             },
             onLimpiarClick = {
