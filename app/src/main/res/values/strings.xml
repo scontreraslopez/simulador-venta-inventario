@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Simulador Venta Inventario</string>
+    <string name="button_confirmar_venta">Confirmar Venta</string>
+    <string name="button_cancelar_venta">Cancelar Venta</string>
+    <string name="mensaje_venta_vacia">No puedo ofrecerte nada por eso...</string>
+    <string name="mensaje_venta_items">Te ofrezco %1$dg por los %2$d items</string>
+    <string name="bienvenida_venta">Interesante propuesta...</string>
+    <string name="bienvenida_no_venta">Bienvenido, Exile</string>
+    <string name="toast_venta">Transacción solicitada</string>
+    <string name="toast_limpiar">Inventario limpiado</string>
 </resources>

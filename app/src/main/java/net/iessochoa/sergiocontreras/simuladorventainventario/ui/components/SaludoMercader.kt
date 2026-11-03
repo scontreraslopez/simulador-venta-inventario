@@ -4,8 +4,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import net.iessochoa.sergiocontreras.simuladorventainventario.R
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.theme.SimuladorVentaInventarioTheme
 
 /**
@@ -22,7 +24,7 @@ fun SaludoMercader(
     haySeleccion: Boolean,
     modifier: Modifier = Modifier
 ) {
-    val texto = if (haySeleccion) "Interesante propuesta..." else "Bienvenido, Exile"
+    val texto = if (haySeleccion) stringResource(R.string.bienvenida_venta) else stringResource(R.string.bienvenida_no_venta)
 
     Text(
         text = texto,

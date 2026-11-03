@@ -10,8 +10,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.simuladorventainventario.R
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.theme.SimuladorVentaInventarioTheme
 
 @Composable
@@ -29,7 +31,7 @@ fun SeccionBotones(
             modifier = Modifier.fillMaxWidth(),
             onClick = onVenderClick
         ) {
-            Text("Confirmar Venta")
+            Text(stringResource(R.string.button_confirmar_venta))
         }
         Spacer(
             modifier = Modifier.height(8.dp)
@@ -39,9 +41,10 @@ fun SeccionBotones(
             colors = ButtonDefaults.buttonColors(
                 containerColor = MaterialTheme.colorScheme.secondaryContainer,
                 contentColor = MaterialTheme.colorScheme.onSecondaryContainer
-            ),            onClick = onLimpiarClick
+            ),
+            onClick = onLimpiarClick
         ) {
-            Text("Cancelar Venta")
+            Text(stringResource(R.string.button_cancelar_venta))
         }
 
 

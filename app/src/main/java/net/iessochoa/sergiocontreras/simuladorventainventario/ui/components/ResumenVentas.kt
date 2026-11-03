@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,8 +28,8 @@ fun ResumenVentas(
 ) {
 
     val mensajes = listOf(
-        "No puedo ofrecerte nada por eso...",
-        "Te ofrezco ${totalOro}g por los $numItems items",
+        stringResource(R.string.mensaje_venta_vacia),
+        stringResource(R.string.mensaje_venta_items, totalOro, numItems),
     )
 
     @DrawableRes val imagenRes: Int

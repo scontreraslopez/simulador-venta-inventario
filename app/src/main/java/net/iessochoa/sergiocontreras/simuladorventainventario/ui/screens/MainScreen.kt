@@ -15,8 +15,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import net.iessochoa.sergiocontreras.simuladorventainventario.R
 import net.iessochoa.sergiocontreras.simuladorventainventario.data.InventoryRepository
 import net.iessochoa.sergiocontreras.simuladorventainventario.model.InventarioItem
 import net.iessochoa.sergiocontreras.simuladorventainventario.ui.components.CheckboxGrid
@@ -43,6 +45,8 @@ fun MainScreen(
 
     val totalOro = selectedItems.sumOf { it.precio }
     val context = LocalContext.current
+    val toastVentaMensaje = stringResource(R.string.toast_venta)
+    val toastLimpiarMensaje = stringResource(R.string.toast_limpiar)
 
 
     
@@ -66,11 +70,11 @@ fun MainScreen(
         Spacer(modifier = Modifier.height(32.dp))
         SeccionBotones(
             onVenderClick = {
-                Toast.makeText(context, "Transacción solicitada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, toastVentaMensaje, Toast.LENGTH_SHORT).show()
             },
             onLimpiarClick = {
                 selectedItems = setOf()
-                Toast.makeText(context, "Inventario limpiado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context,toastLimpiarMensaje, Toast.LENGTH_SHORT).show()
             }
         )
 
