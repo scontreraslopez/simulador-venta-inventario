@@ -2,9 +2,9 @@
 
 Parcial 1 de la asignatura **Programación de Móviles** (PMDM) del curso 2026-2027.
 Grupo 2K.
-Módelo B
+Modelo A
 
-## Descripción de la app - 
+## Descripción de la app
 Eres el mercader de un juego de rol (inspirado en el *Path of Exile*). El jugador te ofrece objetos de su inventario, marca los que quiere vender y tú le dices cuánto oro le das por ellos. Toda la app es **una sola pantalla**.
 
 ## Rúbrica de evaluación — Simulador de Venta de Inventario
@@ -50,7 +50,7 @@ La nota se obtiene por **niveles de cumplimiento acumulativos**. Hay que **compl
 ```
 
 
-![alt text](image.png)
+![Panel de Comercio antes y después de marcar objetos: sin selección muestra "Bienvenido, Exile", el monedero vacío y "No puedo ofrecerte nada por eso..."; al marcar tres objetos cambia a "Interesante propuesta...", la imagen de dinero y "Te ofrezco 200g por los 3 items"](panel-comercio-sin-y-con-seleccion.png)
 
 ### Zonas
 
@@ -90,7 +90,7 @@ Arriba tienes sendas capturas de la app en funcionamiento. La primera muestra la
 
 Si falta alguno, el nivel Básico **no se da por superado** y la nota máxima es **4**, aunque la app funcione en función de lo cerca que esté de la versión final.
 
-- [ ] **Componentes separados en `ui.components`**: como mínimo cuatro ficheros o composables independientes. Se te proporcionan vacíos. Si quieres puedes fusionar alguno pero al menos que hayan 3:
+- [ ] **Componentes separados en `ui.components`**: se te proporcionan cuatro ficheros vacíos, uno por componente. Puedes fusionar alguno, pero tiene que haber como mínimo tres:
   1. Bienvenida (`SaludoMercader`)
   2. Resumen de venta (`ResumenVentas`)
   3. Grid de checkboxes (`CheckboxGrid`)
@@ -149,7 +149,7 @@ Se aplica sobre la nota del nivel alcanzado. La nota final nunca pasa de **10** 
 
 ### Buenas prácticas (suman hasta +1 punto)
 
-- [ ] Textos en `strings.xml`, no hardcodeados (incluido el título del TopAppBar y los mensajes de los Toast). Te doy algunos ya picados, pero puedes añadirlos tu si prefieres.
+- [ ] Textos en `strings.xml`, no hardcodeados (incluido el título del TopAppBar y los mensajes de los Toast). Te doy algunos ya picados, pero puedes añadirlos tú si prefieres.
 - [ ] **State hoisting**: el estado vive en `MainScreen`; los componentes de `ui.components` lo reciben por parámetro y avisan con lambdas (`onCheckedChange`, `onVenderClick`...).
 - [ ] Cada componente acepta un `modifier: Modifier = Modifier`.
 - [ ] Hay `@Preview` de los componentes.
