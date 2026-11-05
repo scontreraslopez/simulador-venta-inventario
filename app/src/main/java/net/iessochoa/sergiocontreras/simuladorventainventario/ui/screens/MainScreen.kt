@@ -49,7 +49,6 @@ fun MainScreen(
     val toastLimpiarMensaje = stringResource(R.string.toast_limpiar)
 
 
-    
     Column(
         modifier = modifier.padding(4.dp),
         verticalArrangement = Arrangement.Center,
@@ -78,21 +77,6 @@ fun MainScreen(
                 Toast.makeText(context,toastLimpiarMensaje, Toast.LENGTH_SHORT).show()
             }
         )
-
-        /*
-
-
-        Text("TITULO")
-        Text("Resumen Transaccion: ")
-        Text("Recibes 150g")
-        Text("Vende tu inventario")
-        Text("Espada oxidada - 20g)
-        Text("Taza rota - 1g)
-        Text("...")
-        Text("Confirmar")
-        Text("Limpiar")
-             */
-
     }
 }
 
