@@ -70,7 +70,7 @@ fun ResumenVentasPreview() {
 
 @Preview(showBackground = true)
 @Composable
-fun ResumenVentasPreview2() {
+fun ResumenVentasPreviewVacio() {
     ResumenVentas(
         totalOro = 0,
         numItems = 0
