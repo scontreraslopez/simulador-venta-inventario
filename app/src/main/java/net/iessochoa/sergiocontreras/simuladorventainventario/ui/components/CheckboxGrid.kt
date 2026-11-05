@@ -31,6 +31,7 @@ fun CheckboxGrid(
     Column(
         modifier = modifier
     ) {
+        // Esta es la solución más "clásica" pero me gusta más con chunked(2)
         for (i in listaInventario.indices step 2) {
             Row(
                 modifier = Modifier.fillMaxWidth()
